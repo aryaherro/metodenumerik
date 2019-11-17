@@ -43,15 +43,15 @@ public class MetodeSecant extends MetodeNumerik{
         
         MS.inputRumus();
         
-        System.out.println("Rumus : " + MS.cetakRumus(MS.getJumlahPangkat()));
+        System.out.println("\nRumus : " + MS.cetakRumus(MS.getJumlahPangkat()));
         MS.cetakRumus(MS.getJumlahPangkat());
         
-        System.out.print("Ingin Menginput manual nilai x" + MS.superscript(1) + " dan nilai x" + MS.superscript(2) + " (y/n): ");
+        System.out.print("\nIngin Menginput manual nilai x" + MS.superscript(1) + " dan nilai x" + MS.superscript(2) + " (y/n): ");
         String input = scn.nextLine();
         if (input.equals("y") || input.equals("Y")) {
-            System.out.print("Masukkan nilai x" + MS.superscript(1) + " : ");
+            System.out.print("Masukkan nilai x" + MS.subscript(1) + " : ");
             MS.setX(scnDouble.nextDouble(),0);
-            System.out.print("Masukkan nilai x" + MS.superscript(2) + " : ");
+            System.out.print("Masukkan nilai x" + MS.subscript(2) + " : ");
             MS.setX(scnDouble.nextDouble(),1);
         }
         else{
@@ -62,19 +62,21 @@ public class MetodeSecant extends MetodeNumerik{
             }while(MS.getX(0) == MS.getX(1));
         }
         
-        System.out.println("Iterasi\t\tx₁\t\tx₂\t\tx₃");
+        System.out.println("\nIterasi\t\tx₁\t\tx₂\t\tx₃");
         try {
-            for (int i = 0; ((i < MS.getUlangMaks()) && (!(Double.isNaN(MS.getX(i+1)))) && !(((MS.getX(i+1)-MS.getX(i)) < MS.getErTol()) && ((MS.getX(i+1)-MS.getX(i)) > 0))); i++) {
+            for (int i = 0; ((i < MS.getUlangMaks()) && (!(Double.isNaN(MS.getX(i+1)))) && !(((MS.getX(i+2) - MS.getX(i)) < MS.getErTol()) && ((MS.getX(i+2) - MS.getX(i)) > 0))); i++) {
                 //System.out.print((i+1) + "\t\t" + MS.getX(i) + "\t\t" + MS.getX(i+1));
                 System.out.printf((i+1) + "\t\t%.6f\t%.6f",MS.getX(i),MS.getX(i+1));
                 MS.setX((MS.rumusSecant(MS.getX(i), MS.getX(i+1))),(i+2));
                 //System.out.println("\t\t" + MS.getX(i+2));
                 System.out.printf("\t%.6f\n",MS.getX(i+2));
+                MS.setNilaiI(i+1);
             }    
         }
         catch(ArrayIndexOutOfBoundsException exception){
             
         }
+        System.out.printf("\nNilai akar dari persamaan " + MS.cetakRumus(MS.getJumlahPangkat()) + " adalah %.6f\n",MS.getX(MS.getNilaiI()));
     }
     public double rumusSecant(double newA,  double newB){
         double newC = newB - ((perhitunganY(newB, getJumlahPangkat()) * (newB - newA)) / (perhitunganY(newB, getJumlahPangkat()) - perhitunganY(newA, getJumlahPangkat())));

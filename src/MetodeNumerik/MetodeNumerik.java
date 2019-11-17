@@ -14,16 +14,23 @@ import javax.swing.JOptionPane;
  */
 public class MetodeNumerik{
     private final double[] konstanta, x;
-    private int jumlahPangkat, ulangMaks;
-    private double a, b, c, erTol;
-    Scanner scnDouble = new Scanner(System.in);
-        
+    private int jumlahPangkat, ulangMaks, nilaiI;
+    private double a, b, c, erTol;    
+
     public MetodeNumerik(int jumlahPangkat, int ulangMaks, double erTol) {
         setJumlahPangkat(jumlahPangkat);
         setUlangMaks(ulangMaks);
         setErTol(erTol);
         this.konstanta = new double[getJumlahPangkat()+1];
         this.x = new double[getUlangMaks()];
+    }
+
+    public int getNilaiI() {
+        return nilaiI;
+    }
+
+    public void setNilaiI(int nilaiI) {
+        this.nilaiI = nilaiI;
     }
     
     public double getKonstanta(int i) {
