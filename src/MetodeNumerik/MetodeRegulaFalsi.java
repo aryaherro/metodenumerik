@@ -18,6 +18,7 @@ public class MetodeRegulaFalsi extends MetodeNumerik {
     
     public static void main(String[] args) {
         // TODO code application logic here
+        Scanner scn = new Scanner(System.in);
         Scanner scnInt = new Scanner(System.in);
         Scanner scnDouble = new Scanner(System.in);
         
@@ -32,11 +33,24 @@ public class MetodeRegulaFalsi extends MetodeNumerik {
         
         MRF.inputRumus();
         
-        MRF.setA(MRF.acak(-10, 10));
-        do
-        {
-            MRF.setB(MRF.acak(-10, 10));
-        }while(MRF.getA() == MRF.getB());
+        System.out.println("Rumus : " + MRF.cetakRumus(MRF.getJumlahPangkat()));
+        MRF.cetakRumus(MRF.getJumlahPangkat());
+        
+        System.out.print("Ingin Menginput manual nilai x" + MRF.superscript(1) + " dan nilai x" + MRF.superscript(2) + " (y/n): ");
+        String input = scn.nextLine();
+        if (input.equals("y") || input.equals("Y")) {
+            System.out.print("Masukkan nilai x" + MRF.superscript(1) + " : ");
+            MRF.setA(scnDouble.nextDouble());
+            System.out.print("Masukkan nilai x" + MRF.superscript(2) + " : ");
+            MRF.setB(scnDouble.nextDouble());
+        }
+        else{
+            MRF.setA(MRF.acak(-10, 10));
+            do
+            {
+                MRF.setB(MRF.acak(-10, 10));
+            }while(MRF.getA() == MRF.getB());
+        }
         
         for (int i = 0; ((i < MRF.getUlangMaks()) && (MRF.perhitunganY(MRF.getA(), MRF.getJumlahPangkat()) * MRF.perhitunganY(MRF.getB(), MRF.getJumlahPangkat()) != 0) && !(((MRF.getB()-MRF.getA()) < MRF.getErTol()) && ((MRF.getB()-MRF.getA()) > 0))); i++) { 
             System.out.print("nilai a : " + MRF.getA());

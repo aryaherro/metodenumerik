@@ -22,6 +22,7 @@ public class MetodeBiseksi extends MetodeNumerik{
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Scanner scn = new Scanner(System.in);
         Scanner scnInt = new Scanner(System.in);
         Scanner scnDouble = new Scanner(System.in);
         
@@ -35,11 +36,24 @@ public class MetodeBiseksi extends MetodeNumerik{
         
         MB.inputRumus();
         
-        MB.setA(MB.acak(-10, 10));
-        do
-        {
-            MB.setB(MB.acak(-10, 10));
-        }while(MB.getA() == MB.getB());
+        System.out.println("Rumus : " + MB.cetakRumus(MB.getJumlahPangkat()));
+        MB.cetakRumus(MB.getJumlahPangkat());
+        
+        System.out.print("Ingin Menginput manual nilai x" + MB.superscript(1) + " dan nilai x" + MB.superscript(2) + " (y/n): ");
+        String input = scn.nextLine();
+        if (input.equals("y") || input.equals("Y")) {
+            System.out.print("Masukkan nilai x" + MB.superscript(1) + " : ");
+            MB.setA(scnDouble.nextDouble());
+            System.out.print("Masukkan nilai x" + MB.superscript(2) + " : ");
+            MB.setB(scnDouble.nextDouble());
+        }
+        else{
+            MB.setA(MB.acak(-10, 10));
+            do
+            {
+                MB.setB(MB.acak(-10, 10));
+            }while(MB.getA() == MB.getB());
+        }
         
         for (int i = 0; ((i < MB.getUlangMaks()) && (MB.perhitunganY(MB.getA(), MB.getJumlahPangkat()) * MB.perhitunganY(MB.getB(), MB.getJumlahPangkat()) != 0) && !(((MB.getB()-MB.getA()) < MB.getErTol()) && ((MB.getB()-MB.getA()) > 0))); i++) { 
             System.out.print("nilai a : " + MB.getA());

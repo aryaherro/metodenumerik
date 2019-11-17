@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author Ajeng
  */
-public class MetodeNumerik {
+public class MetodeNumerik{
     private final double[] konstanta, x;
     private int jumlahPangkat, ulangMaks;
     private double a, b, c, erTol;
@@ -196,8 +196,14 @@ public class MetodeNumerik {
     
     public void inputRumus(){
         for (int i = getJumlahPangkat() ; i >= 0; i--) {
-            System.out.print("Masukkan nilai " + ((i != 0)?("Konstanta untuk x" + superscript(i)) : "Masukkan nilai C") + " (bisa desimal) : ");
-            setKonstanta(scnDouble.nextDouble(), i);
+            setKonstanta(Double.parseDouble(JOptionPane.showInputDialog(null, "Masukkan nilai " + ((i != 0)?("Konstanta untuk x" + superscript(i)) : "Masukkan nilai C") + " (bisa desimal) : ", ((i != 0)?("x" + superscript(i)) : "C"), 1)),i);
         }
+    }
+    
+    public String cetakRumus(int i){
+        if (i == 0)
+            return "" + ((getKonstanta(i) < 0)? " - " + (-1*getKonstanta(i)): " + " + getKonstanta(i));
+        else
+            return "" + ((getKonstanta(i) < 0)? " - " + (-1*getKonstanta(i)): ((i == getJumlahPangkat())? "" : " + ") + getKonstanta(i)) + "x" + superscript(i) + cetakRumus(i-1);
     }
 }
