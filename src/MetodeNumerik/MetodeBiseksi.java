@@ -41,19 +41,7 @@ public class MetodeBiseksi extends MetodeNumerik{
         
         System.out.print("Ingin Menginput manual nilai x" + MB.superscript(1) + " dan nilai x" + MB.superscript(2) + " (y/n): ");
         String input = scn.nextLine();
-        if (input.equals("y") || input.equals("Y")) {
-            System.out.print("Masukkan nilai x" + MB.superscript(1) + " : ");
-            MB.setA(scnDouble.nextDouble());
-            System.out.print("Masukkan nilai x" + MB.superscript(2) + " : ");
-            MB.setB(scnDouble.nextDouble());
-        }
-        else{
-            MB.setA(MB.acak(-10, 10));
-            do
-            {
-                MB.setB(MB.acak(-10, 10));
-            }while(MB.getA() == MB.getB());
-        }
+        MB.inputAcakAB(input);
         
         for (int i = 0; ((i < MB.getUlangMaks()) && (MB.perhitunganY(MB.getA(), MB.getJumlahPangkat()) * MB.perhitunganY(MB.getB(), MB.getJumlahPangkat()) != 0) && !(((MB.getB()-MB.getA()) < MB.getErTol()) && ((MB.getB()-MB.getA()) > 0))); i++) { 
             System.out.print("nilai a : " + MB.getA());

@@ -5,7 +5,6 @@
  */
 package MetodeNumerik;
 
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author Ajeng
  */
 public class MetodeNumerik{
-    private final double[] konstanta, x;
+    private final double[] konstanta;
     private int jumlahPangkat, ulangMaks, nilaiI;
     private double a, b, c, erTol;    
 
@@ -22,7 +21,6 @@ public class MetodeNumerik{
         setUlangMaks(ulangMaks);
         setErTol(erTol);
         this.konstanta = new double[getJumlahPangkat()+1];
-        this.x = new double[getUlangMaks()];
     }
 
     public int getNilaiI() {
@@ -39,14 +37,6 @@ public class MetodeNumerik{
 
     public void setKonstanta(double konstanta, int i) {
         this.konstanta[i] = konstanta;
-    }
-
-    public double getX(int i) {
-        return x[i];
-    }
-
-    public void setX(double x, int i) {
-        this.x[i] = x;
     }
 
     public double fungsiPangkat(double newKonstanta, double newX, int newPangkat)
@@ -212,5 +202,22 @@ public class MetodeNumerik{
             return "" + ((getKonstanta(i) < 0)? " - " + (-1*getKonstanta(i)): " + " + getKonstanta(i));
         else
             return "" + ((getKonstanta(i) < 0)? " - " + (-1*getKonstanta(i)): ((i == getJumlahPangkat())? "" : " + ") + getKonstanta(i)) + "x" + superscript(i) + cetakRumus(i-1);
+    }
+    
+    public void inputAcakAB(String input){
+        if (input.equals("y") || input.equals("Y")) {
+            setA(Double.parseDouble(JOptionPane.showInputDialog(null, "Masukkan nilai x" + subscript(1) + " : ", ("x" + subscript(1)), 1)));
+            do
+            {
+                setB(Double.parseDouble(JOptionPane.showInputDialog(null, ((getA() != getB())? "" : "Nilai x" + subscript(1) + " dan Nilai x" + subscript(2) + " tidak boleh sama, ") + "Masukkan nilai x" + subscript(2) + " : ", ("x" + subscript(2)), (getA() != getB()?1:2))));
+            }while(getA() == getB());
+        }
+        else{
+            setA(acak(-10, 10));
+            do
+            {
+                setB(acak(-10, 10));
+            }while(getA() == getB());
+        }
     }
 }
