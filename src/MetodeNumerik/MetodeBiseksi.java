@@ -32,7 +32,10 @@ public class MetodeBiseksi extends MetodeNumerik{
         System.out.print("Masukkan jumlah iterasi maksimum yang dilakukan : ");
         int y = scnInt.nextInt();
         
-        MetodeBiseksi MB = new MetodeBiseksi(x, y, 0);
+        System.out.print("Masukkan toleransi maksimum : ");
+        double z = scnDouble.nextDouble();
+        
+        MetodeBiseksi MB = new MetodeBiseksi(x, y, z);
         
         MB.inputRumus();
         
@@ -43,19 +46,23 @@ public class MetodeBiseksi extends MetodeNumerik{
         String input = scn.nextLine();
         MB.inputAcakAB(input);
         
-        for (int i = 0; ((i < MB.getUlangMaks()) && (MB.perhitunganY(MB.getA(), MB.getJumlahPangkat()) * MB.perhitunganY(MB.getB(), MB.getJumlahPangkat()) != 0) && !(((MB.getB()-MB.getA()) < MB.getErTol()) && ((MB.getB()-MB.getA()) > 0))); i++) { 
-            System.out.print("nilai a : " + MB.getA());
-            System.out.print("\t\tnilai b : " + MB.getB());
+        System.out.println("\nIterasi\t\tx₁\t\tx₂\t\tx₃");
+        int i = 0;
+        do{
+        //for (int i = 0; ((i < MB.getUlangMaks()) && (MB.perhitunganY(MB.getA(), MB.getJumlahPangkat()) * MB.perhitunganY(MB.getB(), MB.getJumlahPangkat()) != 0) && !(((MB.getB()-MB.getA()) < MB.getErTol()) && ((MB.getB()-MB.getA()) > 0))); i++) { 
+            System.out.printf((i+1) + "\t\t%.6f\t%.6f",MB.getA(),MB.getB());
             MB.setC(MB.rumusBiseksi(MB.getA(), MB.getB()));
             
-            System.out.print("\t\tnilai c : " + MB.getC());
-            System.out.println("\t\tnilai f(c) : " + MB.perhitunganY(MB.getC(), MB.getJumlahPangkat()));
+            System.out.printf("\t%.6f\n",MB.getC());
+            //System.out.println("\t\tnilai f(c) : " + MB.perhitunganY(MB.getC(), MB.getJumlahPangkat()));
             if (MB.perhitunganY(MB.getA(), MB.getJumlahPangkat()) * MB.perhitunganY(MB.getC(), MB.getJumlahPangkat()) < 0) { 
                 MB.setB(MB.getC());
             } else {
                 MB.setA(MB.getC());
             }
-        }    
+            i++;
+        }while((i < MB.getUlangMaks()) && (MB.perhitunganY(MB.getA(), MB.getJumlahPangkat()) * MB.perhitunganY(MB.getB(), MB.getJumlahPangkat()) != 0) && !(((MB.getB()-MB.getA()) <= MB.getErTol()) && ((MB.getB()-MB.getA()) >= 0)));
+        System.out.printf("\nNilai akar dari persamaan " + MB.cetakRumus(MB.getJumlahPangkat()) + " = 0 terdapat pada iterasi ke-" + i + " adalah %.6f\n",MB.getA());
     }
     
     public double rumusBiseksi(double newA, double newB) {

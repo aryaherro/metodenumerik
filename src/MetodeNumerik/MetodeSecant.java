@@ -53,15 +53,15 @@ public class MetodeSecant extends MetodeNumerik{
         
         System.out.println("\nIterasi\t\tx₁\t\tx₂\t\tx₃");
         
-        int i = 1;
+        int i = 0;
         do{
-            System.out.printf((i) + "\t\t%.6f\t%.6f",MS.getA(),MS.getB());
+            System.out.printf((i+1) + "\t\t%.6f\t%.6f",MS.getA(),MS.getB());
             MS.setC(MS.rumusSecant(MS.getA(), MS.getB()));
             System.out.printf("\t%.6f\n",MS.getC());
             MS.setA(MS.getB());
             MS.setB(MS.getC());
             i++;
-        }while((i <= MS.getUlangMaks()) && (!(Double.isNaN(MS.getB()))) && !(((MS.getC() - MS.getA()) < MS.getErTol()) && ((MS.getC() - MS.getA()) > 0) && (MS.getB() == MS.getA())));    
+        }while((i < MS.getUlangMaks()) && (!(Double.isNaN(MS.getB()))) && !(((MS.getC() - MS.getA()) <= MS.getErTol()) && ((MS.getC() - MS.getA()) >= 0)));    
         
         System.out.printf("\nNilai akar dari persamaan " + MS.cetakRumus(MS.getJumlahPangkat()) + " = 0 terdapat pada iterasi ke-" + i + " adalah %.6f\n",MS.getA());
     }
