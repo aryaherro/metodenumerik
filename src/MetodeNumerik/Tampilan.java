@@ -4,11 +4,22 @@
  * and open the template in the editor.
  */
 package MetodeNumerik;
+
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author Ajeng
  */
 public class Tampilan extends javax.swing.JFrame {
+
+    private static final long serialVersionUID = 1L;
     /**
      * Creates new form Tampilan
      */
@@ -25,7 +36,6 @@ public class Tampilan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
         jLabel1 = new javax.swing.JLabel();
@@ -153,7 +163,7 @@ public class Tampilan extends javax.swing.JFrame {
             }
         });
 
-        hitung.setText("htung");
+        hitung.setText("hitung");
         hitung.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 hitungMouseClicked(evt);
@@ -223,6 +233,110 @@ public class Tampilan extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JTextArea getRumus() {
+        return Rumus;
+    }
+
+    public void setRumus(JTextArea Rumus) {
+        this.Rumus = Rumus;
+    }
+
+    public JButton getHitung() {
+        return hitung;
+    }
+
+    public void setHitung(JButton hitung) {
+        this.hitung = hitung;
+    }
+
+    public JFormattedTextField getIterasiMaks() {
+        return iterasiMaks;
+    }
+
+    public void setIterasiMaks(JFormattedTextField iterasiMaks) {
+        this.iterasiMaks = iterasiMaks;
+    }
+
+    public JEditorPane getjEditorPane1() {
+        return jEditorPane1;
+    }
+
+    public void setjEditorPane1(JEditorPane jEditorPane1) {
+        this.jEditorPane1 = jEditorPane1;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JScrollPane getjScrollPane2() {
+        return jScrollPane2;
+    }
+
+    public void setjScrollPane2(JScrollPane jScrollPane2) {
+        this.jScrollPane2 = jScrollPane2;
+    }
+
+    public JScrollPane getjScrollPane3() {
+        return jScrollPane3;
+    }
+
+    public void setjScrollPane3(JScrollPane jScrollPane3) {
+        this.jScrollPane3 = jScrollPane3;
+    }
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
+    public void setjTable1(JTable jTable1) {
+        this.jTable1 = jTable1;
+    }
+
+    public JFormattedTextField getPangkatMaks() {
+        return pangkatMaks;
+    }
+
+    public void setPangkatMaks(JFormattedTextField pangkatMaks) {
+        this.pangkatMaks = pangkatMaks;
+    }
+
+    public JFormattedTextField getToleransiError() {
+        return toleransiError;
+    }
+
+    public void setToleransiError(JFormattedTextField toleransiError) {
+        this.toleransiError = toleransiError;
+    }
+
     private void pangkatMaksPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_pangkatMaksPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_pangkatMaksPropertyChange
@@ -273,18 +387,34 @@ public class Tampilan extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    //public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Tampilan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
         
-    //}
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            new Tampilan().setVisible(true);
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Rumus;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton hitung;
     private javax.swing.JFormattedTextField iterasiMaks;
     private javax.swing.JEditorPane jEditorPane1;

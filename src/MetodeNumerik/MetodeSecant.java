@@ -28,7 +28,6 @@ public class MetodeSecant extends MetodeNumerik{
         Scanner scnInt = new Scanner(System.in);
         Scanner scnDouble = new Scanner(System.in);
         
-        
         System.out.print("\nMasukkan pangkat maksimal : ");
         int x = scnInt.nextInt();
         
@@ -39,8 +38,7 @@ public class MetodeSecant extends MetodeNumerik{
         double z = scnDouble.nextDouble();
         
         MetodeSecant MS = new MetodeSecant(x, y, z);
-        
-        
+                
         MS.inputRumus();
         
         System.out.println("\nRumus : " + MS.cetakRumus(MS.getJumlahPangkat()));
@@ -61,8 +59,8 @@ public class MetodeSecant extends MetodeNumerik{
             MS.setA(MS.getB());
             MS.setB(MS.getC());
             i++;
-        }while((i < MS.getUlangMaks()) && (!(Double.isNaN(MS.getB()))) && !(((MS.getC() - MS.getA()) <= MS.getErTol()) && ((MS.getC() - MS.getA()) >= 0)));    
-        
+        }while((i < MS.getUlangMaks()) && (!(Double.isNaN(MS.getB()))) && !(((MS.getC() - MS.getA()) <= MS.getErTol()) && ((MS.getC() - MS.getA()) >= 0)));
+
         System.out.printf("\nNilai akar dari persamaan " + MS.cetakRumus(MS.getJumlahPangkat()) + " = 0 terdapat pada iterasi ke-" + i + " adalah %.6f\n",MS.getA());
     }
     public double rumusSecant(double newA,  double newB){
