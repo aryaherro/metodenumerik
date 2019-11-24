@@ -20,7 +20,7 @@ public class MetodeNumerik{
         setJumlahPangkat(jumlahPangkat);
         setUlangMaks(ulangMaks);
         setErTol(erTol);
-        this.konstanta = new double[getJumlahPangkat()+1];
+        this.konstanta = new double[jumlahPangkat+1];
     }
 
     public int getNilaiI() {
@@ -118,9 +118,9 @@ public class MetodeNumerik{
     }
 
     public void setErTol(double erTol) {
-        if (erTol <= 0) {
-            this.erTol = 0.1;
-            JOptionPane.showMessageDialog(null, "Jumlah error toleransi minimal 0,1");
+        if (erTol < 0) {
+            this.erTol = 0;
+            JOptionPane.showMessageDialog(null, "Jumlah error toleransi minimal 0");
         }
         else {
             this.erTol = erTol;
