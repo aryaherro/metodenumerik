@@ -61,7 +61,6 @@ public class MetodeTitikTetap extends MetodeNumerik{
     
     public double rumusTitikTetap(double newX) {
         double hasil = 0;
-        System.out.println("nilai X : " + newX);
         for (int i = getJumlahPangkat(); i > 0; i--) {
             hasil += getKonstanta(i) * Math.pow(newX, i-1);
         }
