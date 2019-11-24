@@ -55,8 +55,8 @@ public class MetodeTitikTetap extends MetodeNumerik{
             MTT.setB(MTT.rumusTitikTetap(MTT.getA()));
             System.out.printf((i+1) + "\t\t%.6f\t%.6f\t%.6f\n",MTT.getA(),MTT.getB(),MTT.perhitunganY(MTT.getA(), MTT.getJumlahPangkat()));
             i++;
-        }while((i < MTT.getUlangMaks()) && (MTT.perhitunganY(MTT.getA(), MTT.getJumlahPangkat())!= 0) && !(((MTT.getB()-MTT.getA()) <= MTT.getErTol()) && ((MTT.getB()-MTT.getA()) >= 0)));
-        System.out.printf("\nNilai akar dari persamaan " + MTT.cetakRumus(MTT.getJumlahPangkat()) + " = 0 terdapat pada iterasi ke-" + i + " adalah %.6f\n",MTT.getA());
+        }while((i < MTT.getUlangMaks()) && (MTT.perhitunganY(MTT.getB(), MTT.getJumlahPangkat())!= 0) && !(((MTT.getB()-MTT.getA()) <= MTT.getErTol()) && ((MTT.getB()-MTT.getA()) >= 0)) && (MTT.getA() != MTT.getB()));
+        System.out.printf("\nNilai akar dari persamaan " + MTT.cetakRumus(MTT.getJumlahPangkat()) + " = 0 terdapat pada iterasi ke-" + i + " adalah %.6f\n",MTT.getB());
     }
     
     public double rumusTitikTetap(double newX) {
