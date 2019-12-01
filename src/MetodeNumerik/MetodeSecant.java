@@ -23,7 +23,6 @@ public class MetodeSecant extends MetodeNumerik{
         return (newB - ((perhitunganY(newB, getJumlahPangkat()) * (newB - newA)) / (perhitunganY(newB, getJumlahPangkat()) - perhitunganY(newA, getJumlahPangkat()))));
     }
     
-    @SuppressWarnings("unchecked")
     public ArrayList langkahSecant(){
         ArrayList list = new ArrayList<>();
         Object[] alay = new Object[5];

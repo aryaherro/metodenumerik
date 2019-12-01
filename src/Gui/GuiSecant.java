@@ -88,43 +88,20 @@ public class GuiSecant extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", null, null, null, null},
-                {"", null, null, null, null},
-                {"", null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "iterasi", "a", "b", "c", "error"
+                "Iterasi", "a", "b", "c", "error"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jTable1.setMaximumSize(new java.awt.Dimension(2147483647, 0));
         jTable1.setMinimumSize(new java.awt.Dimension(30, 0));
         jTable1.setPreferredSize(new java.awt.Dimension(150, 0));
@@ -407,8 +384,8 @@ public class GuiSecant extends javax.swing.JFrame {
         DefaultTableModel modelTable = (DefaultTableModel) jTable1.getModel();
         Object[] atributBaris;
         try {
-            var baris = MS.langkahSecant(); //harus dikasih try catch
-            var listBaris = baris.iterator();
+            ArrayList baris = MS.langkahSecant(); //harus dikasih try catch
+            Iterator listBaris = baris.iterator();
             while(listBaris.hasNext()){
                 atributBaris = (Object[]) listBaris.next();
                 modelTable.addRow(atributBaris);
