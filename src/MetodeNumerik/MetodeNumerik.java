@@ -231,7 +231,7 @@ public class MetodeNumerik{
     }
     
     public void inputAcakAB(String input){
-        if (input.equals("y") || input.equals("Y")) {
+        if ((input.charAt(0) == 'y') || (input.charAt(0) == 'Y')) {
             setA(Double.parseDouble(JOptionPane.showInputDialog(null, "Masukkan nilai x" + subscript(1) + " : ", ("x" + subscript(1)), 1)));
             do
             {

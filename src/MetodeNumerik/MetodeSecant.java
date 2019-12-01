@@ -23,11 +23,12 @@ public class MetodeSecant extends MetodeNumerik{
         return (newB - ((perhitunganY(newB, getJumlahPangkat()) * (newB - newA)) / (perhitunganY(newB, getJumlahPangkat()) - perhitunganY(newA, getJumlahPangkat()))));
     }
     
+    @SuppressWarnings("unchecked")
     public ArrayList langkahSecant(){
         ArrayList list = new ArrayList<>();
-        Object[] alay = new Object[5];
         int i = 0;
         do{
+            Object[] alay = new Object[5];
             alay[0] = i+1;
             alay[1] = getA();
             alay[2] = getB();
@@ -36,8 +37,8 @@ public class MetodeSecant extends MetodeNumerik{
             setA(getB());
             setB(getC());
             alay[4] = getC() - getA();
-            i++;
             list.add(alay);
+            i++;
         }while((i < getUlangMaks()) && (!(Double.isNaN(getB()))) && !(((getC() - getA()) <= getErTol()) && ((getC() - getA()) >= 0)));
         return list;
         //System.out.printf("\nNilai akar dari persamaan " + cetakRumus(getJumlahPangkat()) + " = 0 terdapat pada iterasi ke-" + i + " adalah %.6f\n",getA());
