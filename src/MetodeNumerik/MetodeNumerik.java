@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
 public class MetodeNumerik{
     private final double[] konstanta;
     private int jumlahPangkat, ulangMaks, nilaiI;
-    private double a, b, c, erTol;    
+    private double a, b, c, erTol, nilaiY;
+    private double total = 0;    
 
     public MetodeNumerik(int jumlahPangkat, int ulangMaks, double erTol) {
         setJumlahPangkat(jumlahPangkat);
@@ -127,6 +128,22 @@ public class MetodeNumerik{
         }
     }
     
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+    
+    public double getNilaiY() {
+        return nilaiY;
+    }
+
+    public void setNilaiY(double nilaiY) {
+        this.nilaiY = nilaiY;
+    }
+    
     public String superscript(int pangkat) {
         if (pangkat < 10) {
             switch(pangkat){
@@ -199,9 +216,18 @@ public class MetodeNumerik{
     
     public String cetakRumus(int i){
         if (i == 0)
-            return "" + ((getKonstanta(i) < 0)? " - " + (-1*getKonstanta(i)): " + " + getKonstanta(i));
-        else
-            return "" + ((getKonstanta(i) < 0)? " - " + (-1*getKonstanta(i)): ((i == getJumlahPangkat())? "" : " + ") + getKonstanta(i)) + "x" + superscript(i) + cetakRumus(i-1);
+            return ((getKonstanta(i) == 0)? "" : "" + ((getKonstanta(i) < 0)? " - " + (-1*getKonstanta(i)): " + " + getKonstanta(i)));
+        else{
+            if (getKonstanta(i) == 0){
+                return "" + cetakRumus(i-1);
+            }
+            else{
+                if ((getKonstanta(i) == 1) || (getKonstanta(i) == -1))
+                    return "" + ((getKonstanta(i) < 0)? " - " + (-1*getKonstanta(i)) : ((i == getJumlahPangkat())? "" : " + ") + "x" + superscript(i) + cetakRumus(i-1));
+                else
+                    return "" + ((getKonstanta(i) < 0)? " - " + (-1*getKonstanta(i)): ((i == getJumlahPangkat())? "" : " + ") + getKonstanta(i)) + "x" + superscript(i) + cetakRumus(i-1);
+            }
+        }
     }
     
     public void inputAcakAB(String input){
