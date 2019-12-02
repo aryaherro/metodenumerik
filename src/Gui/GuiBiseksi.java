@@ -22,14 +22,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Ajeng
  */
-public class GuiSecant extends javax.swing.JFrame {
+public class GuiBiseksi extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * Creates new form Tampilan
      */
-    public GuiSecant() {
+    public GuiBiseksi() {
         initComponents();
     }
 
@@ -59,7 +59,7 @@ public class GuiSecant extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jEditorPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Metode Secant");
+        setTitle("Metode Biseksi");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -142,6 +142,7 @@ public class GuiSecant extends javax.swing.JFrame {
         Rumus.setRows(5);
         jScrollPane3.setViewportView(Rumus);
 
+        jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -174,9 +175,7 @@ public class GuiSecant extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
@@ -368,19 +367,20 @@ public class GuiSecant extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     private void hitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hitungActionPerformed
         // TODO add your handling code here:
-        MetodeSecant MS = new MetodeSecant(Integer.parseInt(pangkatMaks.getText()), Integer.parseInt(iterasiMaks.getText()), Double.parseDouble(toleransiError.getText()));
-        MS.inputRumus();
-        Rumus.setText(MS.cetakRumus(MS.getJumlahPangkat()));
-        MS.inputAcakAB(JOptionPane.showInputDialog(null, "Ingin Menginput manual nilai x" + MS.superscript(1) + " dan nilai x" + MS.superscript(2) + " (y/n): "));
+        MetodeBiseksi MB = new MetodeBiseksi(Integer.parseInt(pangkatMaks.getText()), Integer.parseInt(iterasiMaks.getText()), Double.parseDouble(toleransiError.getText()));
+        MB.inputRumus();
+        Rumus.setText(MB.cetakRumus(MB.getJumlahPangkat()));
+        MB.inputAcakAB(JOptionPane.showInputDialog(null, "Ingin Menginput manual nilai x" + MB.superscript(1) + " dan nilai x" + MB.superscript(2) + " (y/n): "));
 
         DefaultTableModel modelTable = (DefaultTableModel) jTable1.getModel();
-        ArrayList list = MS.langkahSecant();
+        ArrayList list = MB.langkahBiseksi();
         Iterator iterList = list.iterator();
         while (iterList.hasNext()){
             Object[] tiapBaris = (Object[]) iterList.next();
             modelTable.addRow(tiapBaris);
         }
         jTable1.setModel(modelTable);
+        
     }//GEN-LAST:event_hitungActionPerformed
 
     /**
@@ -400,8 +400,10 @@ public class GuiSecant extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiSecant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiBiseksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -409,7 +411,7 @@ public class GuiSecant extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new GuiSecant().setVisible(true);
+            new GuiBiseksi().setVisible(true);
         });
     }
 

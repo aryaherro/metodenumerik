@@ -11,7 +11,6 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import MetodeNumerik.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,14 +21,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Ajeng
  */
-public class GuiSecant extends javax.swing.JFrame {
+public class GuiTitikTetap extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * Creates new form Tampilan
      */
-    public GuiSecant() {
+    public GuiTitikTetap() {
         initComponents();
     }
 
@@ -51,19 +50,20 @@ public class GuiSecant extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         toleransiError = new javax.swing.JFormattedTextField();
         hitung = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        Rumus = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        x = new javax.swing.JLabel();
+        rumus = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jEditorPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Metode Secant");
+        setTitle("Metode Titik Tetap");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
         setPreferredSize(new java.awt.Dimension(800, 600));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Masukkan pangkat maksimum : ");
 
         pangkatMaks.addInputMethodListener(new java.awt.event.InputMethodListener() {
@@ -84,6 +84,7 @@ public class GuiSecant extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Masukkan iterasi maksimum : ");
 
         iterasiMaks.addInputMethodListener(new java.awt.event.InputMethodListener() {
@@ -104,6 +105,7 @@ public class GuiSecant extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Masukkan toleransi error : ");
 
         toleransiError.addInputMethodListener(new java.awt.event.InputMethodListener() {
@@ -124,6 +126,7 @@ public class GuiSecant extends javax.swing.JFrame {
             }
         });
 
+        hitung.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         hitung.setText("hitung");
         hitung.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -136,18 +139,14 @@ public class GuiSecant extends javax.swing.JFrame {
             }
         });
 
-        Rumus.setEditable(false);
-        Rumus.setColumns(20);
-        Rumus.setLineWrap(true);
-        Rumus.setRows(5);
-        jScrollPane3.setViewportView(Rumus);
-
+        jTable1.setAutoCreateRowSorter(true);
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Iterasi", "a", "b", "c", "error"
+                "Iterasi", "a", "b", "f(x₂)", "error"
             }
         ) {
             Class[] types = new Class [] {
@@ -167,6 +166,12 @@ public class GuiSecant extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jTable1);
 
+        x.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        x.setText("x : ");
+
+        rumus.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        rumus.setText("persamaan : ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,67 +179,56 @@ public class GuiSecant extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(hitung)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel3))
-                                        .addGap(24, 24, 24))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(18, 18, 18)))
+                                    .addComponent(jLabel4)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel3)))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(iterasiMaks, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(pangkatMaks, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                                    .addComponent(toleransiError))
-                                .addGap(18, 18, 18)
-                                .addComponent(hitung)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                    .addComponent(toleransiError))))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rumus)
+                            .addComponent(x))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pangkatMaks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(jLabel1)
+                    .addComponent(pangkatMaks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rumus))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(iterasiMaks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hitung))
+                    .addComponent(jLabel3)
+                    .addComponent(x))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(toleransiError, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(13, 13, 13)
+                .addComponent(hitung)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    public JTextArea getRumus() {
-        return Rumus;
-    }
-
-    public void setRumus(JTextArea Rumus) {
-        this.Rumus = Rumus;
-    }
 
     public JButton getHitung() {
         return hitung;
@@ -290,14 +284,6 @@ public class GuiSecant extends javax.swing.JFrame {
 
     public void setjScrollPane1(JScrollPane jScrollPane1) {
         this.jScrollPane1 = jScrollPane1;
-    }
-
-    public JScrollPane getjScrollPane3() {
-        return jScrollPane3;
-    }
-
-    public void setjScrollPane3(JScrollPane jScrollPane3) {
-        this.jScrollPane3 = jScrollPane3;
     }
 
     public JTable getjTable1() {
@@ -368,17 +354,23 @@ public class GuiSecant extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     private void hitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hitungActionPerformed
         // TODO add your handling code here:
-        MetodeSecant MS = new MetodeSecant(Integer.parseInt(pangkatMaks.getText()), Integer.parseInt(iterasiMaks.getText()), Double.parseDouble(toleransiError.getText()));
-        MS.inputRumus();
-        Rumus.setText(MS.cetakRumus(MS.getJumlahPangkat()));
-        MS.inputAcakAB(JOptionPane.showInputDialog(null, "Ingin Menginput manual nilai x" + MS.superscript(1) + " dan nilai x" + MS.superscript(2) + " (y/n): "));
-
+        MetodeTitikTetap MTT = new MetodeTitikTetap(Integer.parseInt(pangkatMaks.getText()), Integer.parseInt(iterasiMaks.getText()), Double.parseDouble(toleransiError.getText()));
+        MTT.inputRumus();
+        rumus.setText("persamaan : " + MTT.cetakRumus(MTT.getJumlahPangkat()));
+        MTT.inputAcakA(JOptionPane.showInputDialog(null, "Ingin Menginput manual nilai x (y/n): "));
+        
+        x.setText("x : " + MTT.getA());
         DefaultTableModel modelTable = (DefaultTableModel) jTable1.getModel();
-        ArrayList list = MS.langkahSecant();
-        Iterator iterList = list.iterator();
-        while (iterList.hasNext()){
-            Object[] tiapBaris = (Object[]) iterList.next();
-            modelTable.addRow(tiapBaris);
+        try{
+            ArrayList list = MTT.langkahTitikTetap();
+            Iterator iterList = list.iterator();
+            while (iterList.hasNext()){
+                Object[] tiapBaris = (Object[]) iterList.next();
+                modelTable.addRow(tiapBaris);
+            }
+        }
+        catch (Exception e){
+            
         }
         jTable1.setModel(modelTable);
     }//GEN-LAST:event_hitungActionPerformed
@@ -400,8 +392,22 @@ public class GuiSecant extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiSecant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiTitikTetap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -409,12 +415,11 @@ public class GuiSecant extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new GuiSecant().setVisible(true);
+            new GuiTitikTetap().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea Rumus;
     private javax.swing.JButton hitung;
     private javax.swing.JFormattedTextField iterasiMaks;
     private javax.swing.JEditorPane jEditorPane1;
@@ -422,10 +427,11 @@ public class GuiSecant extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JFormattedTextField pangkatMaks;
+    private javax.swing.JLabel rumus;
     private javax.swing.JFormattedTextField toleransiError;
+    private javax.swing.JLabel x;
     // End of variables declaration//GEN-END:variables
 }

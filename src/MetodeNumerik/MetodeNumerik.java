@@ -246,4 +246,15 @@ public class MetodeNumerik{
             }while(getA() == getB());
         }
     }
+    
+    public void inputAcakA(String input){
+        if ((input.charAt(0) == 'y') || (input.charAt(0) == 'Y')) {
+            setA(Double.parseDouble(JOptionPane.showInputDialog(null, "Masukkan nilai x : ", ("x"), 1)));
+            setB(getA());
+        }
+        else{
+            setA(acak(-10, 10));
+            setB(getA());
+        }
+    }
 }

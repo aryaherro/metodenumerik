@@ -7,7 +7,6 @@ package MetodeNumerik;
  */
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
@@ -41,6 +40,5 @@ public class MetodeSecant extends MetodeNumerik{
             i++;
         }while((i < getUlangMaks()) && (!(Double.isNaN(getB()))) && !(((getC() - getA()) <= getErTol()) && ((getC() - getA()) >= 0)));
         return list;
-        //System.out.printf("\nNilai akar dari persamaan " + cetakRumus(getJumlahPangkat()) + " = 0 terdapat pada iterasi ke-" + i + " adalah %.6f\n",getA());
     }
 }
